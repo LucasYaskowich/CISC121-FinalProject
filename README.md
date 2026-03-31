@@ -2,7 +2,7 @@
 
 ## Demo video/gif/screenshot of test
 
-## Problem Breakdown & Computational Thinking (You can add a flowchart , write the four pillars of computational thinking briefly in bullets, etc.)
+## Problem Breakdown & Computational Thinking 
 
 ### Why I chose this
 
@@ -10,18 +10,18 @@ I chose selection sort since I had the idea to model the sorting with the proces
 
 ### How it works
 
-The program uses Gradio to create an app interface. When a new game is initiated, a hand is "dealt", meaning a random sample of tuples containing rank and suit are created. The size of this sample is determined by the user's score from the last round. New players get 5 cards, and after the first game 2 cards are dealt more than the player's score, to allow learning at the player's own speed. The hand size is capped at 12. Once a hand is dealt, the user has choice of selecting the lowest card out of the hand. The game then automatically swaps the two cards, adds one to the player's score, and the correctly sorted card turns green to show the "sorted" portion of the hand. The user continues swapping until the whole hand is in the sorted portion, just as selection sort works. If the user selects an incorrect option, the correct swap is shown, and the score remains unchanged. At the end of the game, the score is displayed, for feedback purposes.
+The program uses Gradio to create an app interface. When a new game is initiated, a hand is "dealt", meaning a random sample of tuples (cards) containing rank and suit are created. The size of this sample (the hand) is determined by the user's score from the last round. New players get 5 cards, and after the first game 2 cards are dealt more than the player's score, to allow learning at the player's own speed. The hand size is capped at 12. Once a hand is dealt, the user has choice of selecting the lowest card out of the hand. The game then automatically swaps the two cards, adds one to the player's score, and the correctly sorted card turns green to show the "sorted" portion of the hand. The user continues swapping until the whole hand is in the sorted portion, just as selection sort works. If the user selects an incorrect option, the correct swap is shown, and the score remains unchanged. At the end of the game, the score is displayed, for feedback purposes.
 
 ### Decomposition
 - Card generation: generate a random hand of N cards
 - Hand rendering: display the hand with clear sorted/unsorted potions
-- Turn handler 
+- Turn handler: check user input against correct solution, perform the swap, update core
 - Game loop: new game feature, state dictionary
 - UI: displays cards and captures player input
 
 ### Pattern Recognition
 Selection sort always scans the unsorted portion for the minimum
-and swaps it to the front. Each round repeats this same scan-and-place
+and swaps it to the front. Each round repeats this same scan-and-swap
 pattern, the player learns this by doing it themselves.
 
 ### Abstraction
