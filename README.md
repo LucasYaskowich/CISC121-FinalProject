@@ -1,18 +1,8 @@
-# Selection Sort
+# Selection Sort Card Game
 
 ## Demo video/gif/screenshot of test
 
 ## Problem Breakdown & Computational Thinking (You can add a flowchart , write the four pillars of computational thinking briefly in bullets, etc.)
-
-
-
-
-# Selection Sort Card Game
-
-## Demo
-<!-- gif, video, or screenshots here -->
-
-## Problem Breakdown & Computational Thinking
 
 ### Why I chose this
 
