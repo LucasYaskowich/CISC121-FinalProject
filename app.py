@@ -10,15 +10,23 @@ def generate_hand(size=5):
     hand = random.sample(deck, size)
     return hand
 
-def render_hand(hand, sorted_count):
+def render_hand(hand, sorted_count, state):
     '''render the hand as HTML, showing sorted and unsorted portions'''
     html = "<div style='display: flex; gap: 10px;'>"
     
     for i, card in enumerate(hand):
         rank, suit = card
         color = "red" if suit in ["Hearts", "Diamonds"] else "black"
-        border = "2px solid green" if i < sorted_count else "1px solid gray"
-        bg = "lightgreen" if i < sorted_count else "white"
+        if i < sorted_count and state["last_correct"] == True:
+            border = "2px green" 
+            bg = "lightgreen"
+        elif i < sorted_count and state["last_correct"] == False:
+            border = "2px red"
+            bg = "lightcoral"
+        else:            
+            border = "1px solid gray"
+            bg = "white"
+        
         html += f"<div style='border: {border}; padding: 10px; text-align: center; color: {color}; background: {bg}; border-radius: 5px;'>{rank} of {suit}</div>" 
         
 
@@ -45,6 +53,7 @@ def handle_turn(player_choice, state):
     if player_choice == correct_str:
         chosen_index = hand.index(correct, sorted_count) # get the index of the chosen card in the unsorted portion
         hand[sorted_count], hand[chosen_index] = hand[chosen_index], hand[sorted_count] # swap
+        state["last_correct"] = True
         state["sorted_count"] += 1
         state["score"] += 1
         message = f"Correct! The card was: {correct_str}"
@@ -53,6 +62,7 @@ def handle_turn(player_choice, state):
         message = f"Incorrect. The correct card was: {correct_str}"
         chosen_index = hand.index(correct, sorted_count)
         hand[sorted_count], hand[chosen_index] = hand[chosen_index], hand[sorted_count] # swap
+        state["last_correct"] = False
         state["sorted_count"] += 1
         pass
     
@@ -63,7 +73,7 @@ def handle_turn(player_choice, state):
         pass
 
     # build the updated card display HTML
-    card_html = render_hand(hand, state["sorted_count"])
+    card_html = render_hand(hand, state["sorted_count"], state)
     
     unsorted = hand[state["sorted_count"]:]
     
@@ -85,11 +95,12 @@ def new_game(state):
         "hand": hand,
         "sorted_count": 0,
         "score": 0,
-        "total_steps": 0
+        "total_steps": 0,
+        "last_correct": False
     }
     
     # Display cards as HTML
-    card_html = render_hand(hand, 0)
+    card_html = render_hand(hand, 0, state)
     # Get the initial radio choices (all cards)
     radio_choices = gr.Radio(choices=[f"{rank} of {suit}" for rank, suit in hand])
     # Initial feedback (empty or welcome message)
