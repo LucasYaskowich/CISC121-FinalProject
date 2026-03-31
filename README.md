@@ -42,6 +42,17 @@ validated against selection sort logic → Output: sorted hand + score
 [link here]
 
 ## Testing & Verification
-<!-- Document your test cases here -->
+
+### Initial State
+
+### Incorrect Answer
+
+### Correct Answer
+
+### Game Over State
+
+### Game with more cards
+
+#### Note: there are very few edge cases, since there are so few possible user inputs
 
 ## Author & Acknowledgments
