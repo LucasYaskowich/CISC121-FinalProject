@@ -49,15 +49,21 @@ def handle_turn(player_choice, state):
     
     correct = find_minimum(hand, sorted_count)
     correct_str = f"{correct[0]} of {correct[1]}"
+
+    # parse the player's choice back to just the rank
+    player_rank = player_choice.split(" of ")[0]
     
-    if player_choice == correct_str:
-        chosen_index = hand.index(correct, sorted_count) # get the index of the chosen card in the unsorted portion
+    for j in range(sorted_count, len(hand)):
+        if f"{hand[j][0]} of {hand[j][1]}" == player_choice:
+            chosen_index = j
+            break
+
+    if player_rank == str(correct[0]):
         hand[sorted_count], hand[chosen_index] = hand[chosen_index], hand[sorted_count] # swap
         state["last_correct"] = True
         state["sorted_count"] += 1
         state["score"] += 1
-        message = f"Correct! The card was: {correct_str}"
-        pass
+        message = f"Correct! The card was: {player_choice}"
     else:
         message = f"Incorrect. The correct card was: {correct_str}"
         chosen_index = hand.index(correct, sorted_count)
