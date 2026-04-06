@@ -34,7 +34,7 @@ Input: random hand → Processing: player picks min each round, validated agains
 3. `python app.py`
 
 ## Hugging Face Link
-[link here]
+[[link here]](https://huggingface.co/spaces/lyaskowich/Selection-Sort-Card-Game)
 
 ## Testing & Verification
 
