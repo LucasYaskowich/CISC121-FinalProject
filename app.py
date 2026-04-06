@@ -23,7 +23,7 @@ def render_hand(hand, sorted_count, state):
         elif i < sorted_count and state["last_correct"] == False:
             border = "2px red"
             bg = "lightcoral"
-        else:            
+        else:        
             border = "1px solid gray"
             bg = "white"
         
